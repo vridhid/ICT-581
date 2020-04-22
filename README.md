@@ -5,3 +5,10 @@ ICT 581 - HTML5 and CSS3 with jQuery
 
 Course description cited from: https://conted.ucalgary.ca/search/publicCourseSearchDetails.do?method=load&courseId=8104067
 
+Assignment 1: 25 / 25 - A+
+
+Assignment 2: 25 / 25 - A+
+
+Assignment 3: 25 / 25 - A+
+
+Assignment 4: 18 / 25 - B-
