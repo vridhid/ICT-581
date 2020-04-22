@@ -1,0 +1,151 @@
+<!-- NAME: VRIDHI DUBEY -->
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Assignment 1</title>
+	<link rel="stylesheet" href="index.css">
+	<script src="jquery-3.4.0.min.js"></script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+    
+  <body>
+
+    <header>
+      <nav>
+        <h1>Header</h1>
+      </nav>
+    </header>
+	 
+		<!-- List of buttons -->
+	<div id="button_wrapper">
+		<button id="add_new_box">Add a new box</button>
+		<button id="remove_box">Remove a box</button>
+		<button id="add_yellow_box">Add yellow box</button>
+		<button id="change_page_layout">Change page layout</button>
+		<button id="print_DOM_tree">Print DOM tree</button>
+	</div>	
+
+	
+	<ul class="grid-container">
+	  <li class="grid-item">1</li>
+	  <li class="grid-item">2</li>
+	  <li class="grid-item">3</li>
+	  <li class="grid-item">4</li>
+	  <li class="grid-item">5</li>
+	  <li class="grid-item">6</li>
+	
+	</ul>
+    
+		
+	<footer>
+      <h4>Footer</h4> 
+    </footer>
+	
+	<script>
+
+		$(document).ready(function(){
+		// 1. Add new box:
+		$('#add_new_box').click(function(){
+				var ul = $('ul');									// place grid into variable ul
+				ul.find('li:last').clone(true).appendTo(ul).css( 'background-color', 'tomato' );
+																	// append a grid item to container with color: red
+				maxBox();											// does not allow page to have more than 10 boxes and updates box number
+				console.log('Red box is added to end. Number of boxes: ' + ($("li").length));
+																	// console prints the mumber of boxes added to screen
+		});
+			
+				
+		// 2. Remove a box
+		$('#remove_box').click(function(){
+
+			$('li:last').remove();									// removes the last box in the list
+
+			if ($("li").length <= 1){								// if length  of list is less than one
+				$("#remove_box").attr("disabled", true);			// remove button is disabled
+				$("#remove_box").css({ 								// depicted by the following stylistic choices
+					"opacity": "0.3",
+					"background-color": "grey",
+				});
+				alert ("Cannot remove any more boxes. Refresh the page!");	
+			} 														// pop up message with 'refresh page'
+			console.log('Last box is removed. Number of boxes: ' + ($("li").length));
+		});															// console prints the number of boxes left on screen
+
+
+		// 3. Add a box with a yellow background
+		$('#add_yellow_box').click(function(){
+			var ul_yellow = $('ul');								// place grid into variable ul_yellow
+			ul_yellow.find('li:last').clone(true).appendTo(ul_yellow).css('background-color', 'yellow');
+																	// append a grid item to container with color: yellow
+			maxBox();												// does not allow page to have more than 10 boxes and updates box number																					
+			console.log('Yellow box is added to end. Number of boxes: ' + ($("li").length));
+																	// console prints the mumber of boxes added to screen
+		});
+		
+		// 4. Order boxes into rows
+		$('#change_page_layout').click(function(){
+			var grid_con = $('.grid-container');					// place grid into variable grid_con
+			grid_con.css({											// css changes layout to 1 column
+				"display":"grid",
+				"grid-template-columns":"1fr",
+			});	
+			var grid_item = $('li');								// place grid into variable grid_item
+			grid_item.css({											// stylistic choice for rows
+				"width": "960px",
+				"max-width": "100%",
+				"height": "50px",
+				"max-height": "100%",
+				"line-height": "1.5",
+				"font-size": "2em",
+				"text-align": "center",
+			});	
+			console.log('Page layout has been updated');		// console prints when layout is updated
+		});
+		
+
+		// 5. Print a DOM tree
+		$('#print_DOM_tree').click(function(){ 
+			var ul_var = $('.grid-item').parent();				// places the parent of griditem in var ul_var
+			console.log('--', ul_var[0]);						// print with the desired format
+
+			var li_list = $('.grid-item');						// places griditem in var li_list
+
+			for (var i = 0; i<li_list.length; i++){				// go through array and store value of each griditem name
+				console.log('--', $(li_list)[i]);				
+			}
+			
+		}); 
+
+		function maxBox(){
+			if ($("li").length > 9 ){							// if list of length is more than 9
+				$('#add_new_box, #add_yellow_box').attr("disabled", true); //disable the option of adding a new box
+				$('#add_new_box, #add_yellow_box').css({ 		// disabled button is depicted by the following stylistic choices
+					"opacity": "0.3",
+					"background-color": "grey",
+				});
+				alert ("Limit of 10 boxes has been reached. Refresh the page!");
+			} 													// alert user when document reaches 10 boxes
+			($('li:last')).empty();								// empty text in box
+			($('li:last')).append(($("li").length));			// append text which is the corresponding length in list
+			}
+
+		});
+		// end of ready function	
+	</script>
+  </body>
+</html>
+<!-- End of Document -->
+
+
+
+
+
+
+
+
+
+
